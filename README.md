@@ -23,6 +23,7 @@
 1) How do casual members and annual members use Cyclist bikes differently?
 2) Why would causal riders buy Cyclistic annual memberships?
 3) How can Cyclistic use digital media to influence casual riders to become members? (email,social media, etc)
+
 _Without looking at the datasets, I decided to do some comparative analysis. I looked into the bike share industry to see if any companies have had similar problems, and what they've found success in doing.  I'll also be making assummptions that Cyclistic's docking stations are positioned strategically in Chicago, to fulfill a demand of both the annual and casual member. (Providing a low cost transportation alternative option to and from central business/commerical hubs and  nearby residential locations)._ 
 
 _With this in mind here is my intial..._ 
