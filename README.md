@@ -201,7 +201,7 @@ started_at
 
 ```
 
-![Picture title](image-20221218-181932.png)
+![Picture title](https://github.com/netesie/bikerideshare/blob/main/code%20and%20data/Notebook%20Folder/image-20221218-181932.png)
 It seems that casual riders consistently take longer rides and it should be assumed they are spending more on average per trip as well. Besides that, casual and annual member riders trend pretty closely with an expected spike in ride duration in the summer months. The only difference I notice is that casual ride duration trends downwards agressively starting from December , which I assume is due to the cold weather.
 
 Let's explore further to see why this might be. 
