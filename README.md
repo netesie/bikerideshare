@@ -226,7 +226,7 @@ member_casual,
 day_of_week ASC
 
 ```
-![Picture title](image-20221215-104903.png)
+![Picture title](https://github.com/netesie/bikerideshare/blob/main/code%20and%20data/Notebook%20Folder/image-20221215-104903.png)
 From this bar chart, it seems pretty clear that casual members use the bikes for more leisure related activities on the weekends which may explain the longer ride durations and the shorter durations during winter. Annual members seem to be riding more throughout the work week (most likely for their work commute).
 Let's see if we can substantiate this by looking at the time of day annual members usually ride.
 
@@ -248,10 +248,10 @@ ORDER BY
 member_casual,
 time_of_day
 ```
-![Picture title](image-20221216-124335.png)
+![Picture title](https://github.com/netesie/bikerideshare/blob/main/code%20and%20data/Notebook%20Folder/image-20221216-124335.png)
 As expected, annual member ride count spikes at 9 am and 5 pm. Interesting to see that casual riders also spikes around 5 as well. Casual riders don't have the 9 am spike like the annual members, but this could be an opportunity area to advertise these bikes as a viable primary mode of transportation to and from work.
 Let's first make sure these casual riders are starting their rides near major transportation hubs in order to take advantage of the bikes as a work commute option. (I just used the data from our '202110 to 202210 GEOM' table in order to create this visual.)
-![Picture title](image-20221216-001350.png)
+![Picture title](https://github.com/netesie/bikerideshare/blob/main/code%20and%20data/Notebook%20Folder/image-20221216-001350.png)
 Now we can clearly see with this heatmap that casual and annual members start their rides in almost identical neighborhoods in Chicago. We can now build a small customer profile of the casual riders based off when and where they like to ride. 
 
 First off, I feel it’s more than likely a majority of our casual riders live in or near the neighborhoods they are starting these bike trips from.
