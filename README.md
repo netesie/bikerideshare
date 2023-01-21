@@ -32,11 +32,12 @@ _With this in mind here is my intial..._
 1) Casual members use the bikes fewer times a year than annual members and most likely pay more per ride on average.
 2) Casual members would buy annual memberships if they realized how cost effective an annual membership was.
 3) Using the data we could send out direct email or social media campaigns that highlight the savings of an annual membership 
+```
 *Limitations: Data-privacy issues prohibit me from using riders’ personally identiﬁable information. This 
 means that I won’t be able to connect pass purchases to credit card numbers to determine if casual riders live in the 
 Cyclistic service area or if they have purchased multiple single passes.* 
 I downloaded "Cyclistic's" past 12 months of trip data from this website :
-
+```
 [Divvy Trip Data](https://divvy-tripdata.s3.amazonaws.com/index.html) (primary data source)
 
 _(202210-divvy-tripdata.zip, 202209-divvy-tripdata.zip, ... 202110-divvy-tripdata.zip)_
