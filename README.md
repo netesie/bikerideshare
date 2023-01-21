@@ -36,8 +36,9 @@ _With this in mind here is my intial..._
 *Limitations: Data-privacy issues prohibit me from using riders’ personally identiﬁable information. This 
 means that I won’t be able to connect past purchases to credit card numbers to determine if casual riders live in the 
 Cyclistic service area or if they have purchased multiple single passes.* 
-I downloaded "Cyclistic's" past 12 months of trip data from this website :
 ```
+
+I downloaded "Cyclistic's" past 12 months of trip data from this website :
 [Divvy Trip Data](https://divvy-tripdata.s3.amazonaws.com/index.html) (primary data source)
 
 _(202210-divvy-tripdata.zip, 202209-divvy-tripdata.zip, ... 202110-divvy-tripdata.zip)_
