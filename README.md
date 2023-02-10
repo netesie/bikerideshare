@@ -75,97 +75,140 @@ _Testing for null values in fields I will be using for analysis_
 
 
 ```
-
-SELECT ride_id,rideable_type,hour_of_day,started_at,ended_at ,ride_length,day_of_week,member_casual,start_latitude,start_longitude,end_latitude,end_longitude
-
-FROM `wise-arena-359101.Cyclistic_data.202111` 
-
+SELECT
+  ride_id,
+  rideable_type,
+  hour_of_day,
+  started_at,
+  ended_at,
+  ride_length,
+  day_of_week,
+  member_casual,
+  start_latitude,
+  start_longitude,
+  end_latitude,
+  end_longitude
+FROM
+  `wise-arena-359101.Cyclistic_data.202110`
 WHERE
-ride_id IS NOT NULL AND 
-rideable_type IS NOT NULL AND 
-hour_of_day IS NOT NULL AND
-ended_at IS NOT NULL AND 
-ride_length IS NOT NULL AND 
-day_of_week IS NOT NULL AND 
-member_casual IS NOT NULL AND 
-start_latitude IS NOT NULL AND 
-start_longitude IS NOT NULL AND 
-end_latitude IS NOT NULL AND 
-end_longitude IS NOT NULL
+  ride_id IS NOT NULL
+  AND rideable_type IS NOT NULL
+  AND hour_of_day IS NOT NULL
+  AND ended_at IS NOT NULL
+  AND ride_length IS NOT NULL
+  AND day_of_week IS NOT NULL
+  AND member_casual IS NOT NULL
+  AND start_latitude IS NOT NULL
+  AND start_longitude IS NOT NULL
+  AND end_latitude IS NOT NULL
+  AND end_longitude IS NOT NULL
+
 ```
 Then I combined all 12 tables
 
 ```
 
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202110 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202110 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202111 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202111 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202112 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202112 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202201 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202201 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202202 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202202 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202203 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202203 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202204 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202204 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202205 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202205 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202206 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202206 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202207 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202207 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202208 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202208 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202209 cleaned`
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202209 cleaned`
 UNION DISTINCT
-SELECT *
-FROM `wise-arena-359101.Cyclistic_data.202210 cleaned`
-
+SELECT
+  *
+FROM
+  `wise-arena-359101.Cyclistic_data.202210 cleaned`
 ```
 I joined the Chicago's Community boundaries map with my combined 12 month table
 
 
 ```
-SELECT 
-   t.ride_id,
-   t.rideable_type,
-   t.hour_of_day,
-   t.started_at,
-   t.ended_at ,
-   t.ride_length,
-   t.day_of_week,
-   t.member_casual,
-   t.start_latitude,
-   t.start_longitude,
-   t.end_latitude,
-   t.end_longitude,
-    st_geogpoint(start_longitude, start_latitude) as start_point,
-    st_geogpoint(end_longitude, end_latitude) as end_point,
-    st_makeline(st_geogpoint(start_longitude, start_latitude),st_geogpoint(end_longitude, end_latitude)) as bike_route,
-    nh.NEW_GEO,
-    nh.Community,
-    nh.AREA_NUM_1,
-    nh.shape_area,
-    nh.shape_len
-FROM `wise-arena-359101.Cyclistic_data.202110 to 202210`AS t
-JOIN  `wise-arena-359101.Cyclistic_data.CommunityGeo` AS nh
-ON ST_WITHIN(st_geogpoint(t.start_longitude, t.start_latitude), nh.NEW_GEO)
-where start_longitude IS NOT NULL and start_latitude IS NOT NULL and end_longitude IS NOT NULL and end_latitude IS NOT NULL
+SELECT
+  t.ride_id,
+  t.rideable_type,
+  t.hour_of_day,
+  t.started_at,
+  t.ended_at,
+  t.ride_length,
+  t.day_of_week,
+  t.member_casual,
+  t.start_latitude,
+  t.start_longitude,
+  t.end_latitude,
+  t.end_longitude,
+  ST_GEOGPOINT(start_longitude, start_latitude) AS start_point,
+  ST_GEOGPOINT(end_longitude, end_latitude) AS end_point,
+  ST_MAKELINE(ST_GEOGPOINT(start_longitude, start_latitude),ST_GEOGPOINT(end_longitude, end_latitude)) AS bike_route,
+  nh.NEW_GEO,
+  nh.Community,
+  nh.AREA_NUM_1,
+  nh.shape_area,
+  nh.shape_len
+FROM
+  `wise-arena-359101.Cyclistic_data.202110 to 202210`AS t
+JOIN
+  `wise-arena-359101.Cyclistic_data.CommunityGeo` AS nh
+ON
+  ST_WITHIN(ST_GEOGPOINT(t.start_longitude, t.start_latitude), nh.NEW_GEO)
+WHERE
+  start_longitude IS NOT NULL
+  AND start_latitude IS NOT NULL
+  AND end_longitude IS NOT NULL
+  AND end_latitude IS NOT NULL
 ```
 ### 3. Analysis
 Initial observation...I noticed that only casual members used a "docked_bike" besides the available electric and classic bike that annual members were using. It seemed only casual riders were using these bikes, in addition to the other 2. Strangely enough some of the trip duration lengths lasted multiple days and had null values for their end of ride gps location (lat/long).
@@ -190,17 +233,15 @@ First, let's see the average trip duration for casual and member riders and see 
 
 
 ```
-SELECT 
-member_casual,
-started_at,
-CAST(AVG(TIME_DIFF(ride_length, '00:00:00', SECOND)) AS 
-  INT64)
-   AS avg_ride_length_seconds,
-FROM 
-  `wise-arena-359101.Cyclistic_data.202110 to 202210 GEOM` 
+SELECT
+  member_casual,
+  started_at,
+  CAST(AVG(TIME_DIFF(ride_length, '00:00:00', SECOND)) AS INT64) AS avg_ride_length_seconds,
+FROM
+  `wise-arena-359101.Cyclistic_data.202110 to 202210 GEOM`
 GROUP BY
-member_casual, 
-started_at
+  member_casual,
+  started_at
 
 ```
 
@@ -215,18 +256,18 @@ Now, let's see which days of the week are the busiest between both groups (casua
 
 
 ```
-SELECT 
-day_of_week,
-member_casual,
-COUNT(ride_id) AS rides,
-FROM 
-  `wise-arena-359101.Cyclistic_data.202110 to 202210 GEOM` 
+SELECT
+  day_of_week,
+  member_casual,
+  COUNT(ride_id) AS rides,
+FROM
+  `wise-arena-359101.Cyclistic_data.202110 to 202210 GEOM`
 GROUP BY
-day_of_week,
-member_casual
-ORDER BY 
-member_casual,
-day_of_week ASC
+  day_of_week,
+  member_casual
+ORDER BY
+  member_casual,
+  day_of_week ASC
 
 ```
 ![Picture title](https://github.com/netesie/bikerideshare/blob/main/code%20and%20data/Notebook%20Folder/image-20221215-104903.png)
@@ -238,18 +279,18 @@ Let's see if we can substantiate this by looking at the time of day annual membe
 
 
 ```
-SELECT 
-member_casual,
-PARSE_TIME("%I:%M %p",hour_of_day) as time_of_day,
-COUNT(ride_id) AS rides,
-FROM 
-  `wise-arena-359101.Cyclistic_data.202110 to 202210 GEOM` 
+SELECT
+  member_casual,
+  PARSE_TIME("%I:%M %p",hour_of_day) AS time_of_day,
+  COUNT(ride_id) AS rides,
+FROM
+  `wise-arena-359101.Cyclistic_data.202110 to 202210 GEOM`
 GROUP BY
-member_casual, 
-time_of_day
-ORDER BY 
-member_casual,
-time_of_day
+  member_casual,
+  time_of_day
+ORDER BY
+  member_casual,
+  time_of_day
 ```
 ![Picture title](https://github.com/netesie/bikerideshare/blob/main/code%20and%20data/Notebook%20Folder/image-20221216-124335.png)
 As expected, annual member ride count spikes at 9 am and 5 pm. Interesting to see that casual riders also spikes around 5 as well. Casual riders don't have the 9 am spike like the annual members, but this could be an opportunity area to advertise these bikes as a viable primary mode of transportation to and from work.
